@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>handle_documents</id>
+    <version>1.0</version>
+    <priority>1000</priority>
+    <position>0</position>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+    <status>active</status>
+    <default_language>en</default_language>
+    <queries>
+        <item>
+            CREATE TABLE `?:handle_documents` (
+            `document_id` int(11) NOT NULL AUTO_INCREMENT,
+            `user_id` int(11) NOT NULL,
+            `document` varchar(255) NOT NULL,
+            `status` char(1) NOT NULL DEFAULT 'A',
+            `description` text,
+            `type` char(1) NOT NULL DEFAULT 'T',
+            `timestamp` int(11) unsigned NOT NULL,
+            PRIMARY KEY (`document_id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=339 DEFAULT CHARSET=utf8;
+        </item>
+
+        <item>
+            CREATE TABLE `?:handle_documents_categories_links` (
+                `category_id` int(11) NOT NULL,
+                `document_id` int(11) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+
+        <item>
+            CREATE TABLE `?:handle_documents_categories` (
+                `category_id` int(11) NOT NULL AUTO_INCREMENT,
+                `name` varchar(255) NOT NULL,
+                `status` char(1) NOT NULL,
+                PRIMARY KEY (`category_id`)
+            ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+        </item>
+    </queries>
+</addon>
