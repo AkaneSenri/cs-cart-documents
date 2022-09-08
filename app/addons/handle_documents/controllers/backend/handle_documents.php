@@ -31,16 +31,6 @@ if ($_SERVER['REQUEST_METHOD']	== 'POST') {
     return array(CONTROLLER_STATUS_OK, 'handle_documents' . $suffix);
 }
 
-if ($mode == 'update') {
-    $document = fn_get_document_data($_REQUEST['document_id'], DESCR_SL);
-
-    if (empty($document)) {
-        return array(CONTROLLER_STATUS_NO_PAGE);
-    }
-
-    Tygh::$app['view']->assign('document', $document);
-}
-
 if ($mode == 'manage') {
 
     list($handle_documents, $params) = fn_get_documents($_REQUEST, Registry::get('settings.Appearance.admin_elements_per_page'));
@@ -52,6 +42,14 @@ if ($mode == 'manage') {
 }
 
 if ($mode === 'update') {
+    
+    $document = fn_get_document_data($_REQUEST['document_id'], DESCR_SL);
+
+    if (empty($document)) {
+        return array(CONTROLLER_STATUS_NO_PAGE);
+    }
+
+    Tygh::$app['view']->assign('document', $document);
 
     if (!empty($_REQUEST['document_id'])) {
         $document_id = $_REQUEST['document_id'];
@@ -66,9 +64,7 @@ if ($mode === 'update') {
     }
 
     Tygh::$app['view']->assign('document_id', $document_id);
-}
 
-if ($mode == 'update') {
     if (!empty($_REQUEST['document_id'])) {
         $attachments = fn_get_attachments("document", $_REQUEST['document_id'], 'M');
 
@@ -80,4 +76,3 @@ if ($mode == 'update') {
         Tygh::$app['view']->assign('attachments', $attachments);
     }
 }
-
