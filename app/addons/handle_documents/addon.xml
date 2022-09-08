@@ -8,6 +8,9 @@
     <status>active</status>
     <default_language>en</default_language>
     <queries>
+        <item>DROP TABLE IF EXISTS ?:handle_documents;</item>
+        <item>DROP TABLE IF EXISTS ?:handle_documents_categories_links;</item>
+        <item>DROP TABLE IF EXISTS ?:handle_documents_categories;</item>
         <item>
             CREATE TABLE `?:handle_documents` (
             `document_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,5 +39,8 @@
                 PRIMARY KEY (`category_id`)
             ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
         </item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:handle_documents;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:handle_documents_categories_links;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:handle_documents_categories;</item>
     </queries>
 </addon>
