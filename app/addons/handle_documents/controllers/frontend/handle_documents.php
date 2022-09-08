@@ -15,16 +15,6 @@ if ($mode == 'manage') {
 }
 
 if ($mode == 'view') {
-    $document = fn_get_document_data($_REQUEST['document_id'], DESCR_SL);
-
-    if (empty($document)) {
-        return array(CONTROLLER_STATUS_NO_PAGE);
-    }
-
-    Tygh::$app['view']->assign('document', $document);
-}
-
-if ($mode == 'view') {
     $_REQUEST['object_type'] = "document";
     $attachments = fn_get_attachments($_REQUEST['object_type'], $_REQUEST['document_id'], 'M');
 
@@ -34,10 +24,8 @@ if ($mode == 'view') {
     ));
 
     Tygh::$app['view']->assign('attachments', $attachments);
-}
 
-if ($mode == 'view') {
-    $document = fn_get_document_data($_REQUEST['document_id'], DESCR_SL);
+        $document = fn_get_document_data($_REQUEST['document_id']);
 
     if (empty($document)) {
         return array(CONTROLLER_STATUS_NO_PAGE);
