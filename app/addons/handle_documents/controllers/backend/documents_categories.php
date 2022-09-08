@@ -42,21 +42,21 @@ if ($_SERVER['REQUEST_METHOD']	== 'POST') {
         }
     }
 
-if ($mode == 'update') {
-    $category_id = fn_documents_categories_update_category($_REQUEST['category_data'], $_REQUEST['category_id'], DESCR_SL);
+    if ($mode == 'update') {
+        $category_id = fn_documents_categories_update_category($_REQUEST['category_data'], $_REQUEST['category_id'], DESCR_SL);
 
-    $suffix = ".manage";
-}
-
-if ($mode == 'delete') {
-    if (!empty($_REQUEST['category_id'])) {
-        fn_delete_document_category_by_id($_REQUEST['category_id']);
+        $suffix = ".manage";
     }
 
-    $suffix = '.manage';
-}
+    if ($mode == 'delete') {
+        if (!empty($_REQUEST['category_id'])) {
+            fn_delete_document_category_by_id($_REQUEST['category_id']);
+        }
 
-return array(CONTROLLER_STATUS_OK, 'documents_categories' . $suffix);
+        $suffix = '.manage';
+    }
+
+    return array(CONTROLLER_STATUS_OK, 'documents_categories' . $suffix);
 }
 
 if ($mode == 'update') {
